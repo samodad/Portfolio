@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Samoda De Silva</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #1e3c72;
+    background: linear-gradient(135deg, #1fa2ff 0%, #1c6dd0 50%, #155799 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            color:#667eea;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Filter Buttons */
+        .filter-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 30px;
+            margin: 5px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, #1fa2ff 0%, #1c6dd0 50%, #155799 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #1fa2ff 0%, #1c6dd0 50%, #155799 100%);
+            color: white;
+            padding: 25px;
+            position: relative;
+        }
+
+        .project-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .project-subtitle {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .project-body {
+            padding: 25px;
+        }
+
+        .project-description {
+            color: #555;
+            font-size: 1em;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-features {
+            margin-top: 15px;
+        }
+
+        .project-features h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .project-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-features li {
+            padding: 5px 0;
+            color: #666;
+        }
+
+        .project-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+         /* Back Button */
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #1fa2ff 0%, #1c6dd0 50%, #155799 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+         .back-btn:hover {
+            transform: translateY(-3px);
+
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 30px;
+        }
+         
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💼 My Projects</h1>
+            <p class="subtitle">Data Science | Web Development | AI & Machine Learning</p>
+        </header>
+
+        <!-- Filter Buttons -->
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+            <button class="filter-btn" onclick="filterProjects('web')">Web Development</button>
+            <button class="filter-btn" onclick="filterProjects('ml')">Machine Learning</button>
+            <button class="filter-btn" onclick="filterProjects('data')">Data Analytics</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            <!-- Project 1: Akuru Mitura -->
+            <div class="project-card" data-category="web ml">
+                <div class="project-header">
+                    <div class="project-icon">🎯</div>
+                    <h3 class="project-title">අකුරු මිතුරා (Akuru Mitura)</h3>
+                    <p class="project-subtitle">Sinhala Voice-to-Text & Grammar Assistant</p>
+                    <div class="project-tags">
+                        <span class="tag">Web Development</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Accessibility</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Developed an innovative educational platform supporting dysgraphia students in Sri Lanka with Sinhala voice-to-text conversion and grammar feedback. Implemented separate portals for students and teachers with comprehensive accuracy analysis.
+                    </p>
+                <a href="https://github.com/samodad/kdu-research.git" 
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                    <div class="project-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Voice-to-text conversion for Sinhala language</li>
+                            <li>Grammar feedback and correction system</li>
+                            <li>Educational games and activities</li>
+                            <li>Student and teacher login portals</li>
+                            <li>Accuracy analysis and performance tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Project 2: Eco AI Agent -->
+            <div class="project-card" data-category="web ml">
+                <div class="project-header">
+                    <div class="project-icon">🌍</div>
+                    <h3 class="project-title">Eco AI Agent</h3>
+                    <p class="project-subtitle">Carbon Footprint Calculator</p>
+                    <div class="project-tags">
+                        <span class="tag">Ballerina</span>
+                        <span class="tag">Restful API</span>
+                        <span class="tag">Sustainability</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Designed and built a sustainable carbon footprint calculator using Ballerina framework, providing accurate CO₂ emissions analysis. Developed modular architecture with real-time analytics for environmental impact insights.
+                    </p>
+                    <a href="https://github.com/DilaknaH/iwb25-430-heranalytics.git" 
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                    <div class="project-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            <li>Restful API built with Ballerina</li>
+                            <li>Real-time carbon footprint calculations</li>
+                            <li>Responsive web interface</li>
+                            <li>Environmental impact analytics dashboard</li>
+                            <li>Scalable and maintainable codebase</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: RL Hotel Recommendation -->
+            <div class="project-card" data-category="ml">
+                <div class="project-header">
+                    <div class="project-icon">🏨</div>
+                    <h3 class="project-title">RL-Powered Hotel Recommender</h3>
+                    <p class="project-subtitle">Reinforcement Learning System</p>
+                    <div class="project-tags">
+                        <span class="tag">Q-Learning</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Implemented an intelligent hotel recommendation system utilizing Reinforcement Learning Q-Learning algorithms. Engineered adaptive decision-making capabilities to provide personalized accommodation suggestions based on user preferences and behavior patterns.
+                    </p>
+               <a href="https://github.com/samodad/RL-Agent-Machine-Learning.git" 
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+        <div class="project-features">
+    <h4>Key Features:</h4>
+    <ul>
+        <li>Reinforcement Learning Q-Learning algorithm</li>
+        <li>Adaptive hotel recommendation engine</li>
+        <li>Personalized suggestions based on user preferences</li>
+        <li>Dynamic decision-making with continuous learning</li>
+        <li>Scalable Python-based implementation</li>
+        <li>Interactive analytics dashboard for user insights</li>
+    </ul>
+</div>
+                </div>
+            </div>
+
+            <!-- Project 4: UK Migration Analysis -->
+            <div class="project-card" data-category="data">
+                <div class="project-header">
+                    <div class="project-icon">📊</div>
+                    <h3 class="project-title">UK Managed Migration Analytics</h3>
+                    <p class="project-subtitle">Azure SQL & Power BI</p>
+                    <div class="project-tags">
+                        <span class="tag">Azure SQL</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">ETL</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Conducted comprehensive data ingestion and cleaning of UK Managed Migration datasets using Azure SQL Database. Created advanced Power BI visualizations to analyze migration trends, patterns, and demographic insights across multiple years.
+                    </p>
+                    <a href="https://github.com/samodad/advanced-sql-azure-kdu.git" 
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                </div>
+            </div>
+
+            <!-- Project 5: Energy Performance Analysis -->
+            <div class="project-card" data-category="data">
+                <div class="project-header">
+                    <div class="project-icon">⚡</div>
+                    <h3 class="project-title">Manchester Energy Performance</h3>
+                    <p class="project-subtitle">SQL & Power BI Analysis (2014-2024)</p>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Trend Analysis</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Analyzed decade-long energy performance trends across Manchester's local authorities using advanced SQL queries and Power BI dashboards. Identified sustainability patterns and provided actionable insights for energy efficiency improvements.
+                    </p>
+                 <a href="https://github.com/samodad/kdu-adv-sql-4th-sem.git" 
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                </div>
+            </div>
+
+            <!-- Project 6: UN SDG Data Analysis -->
+            <div class="project-card" data-category="data">
+                <div class="project-header">
+                    <div class="project-icon">🌐</div>
+                    <h3 class="project-title">UN SDG Data Repository Analysis</h3>
+                    <p class="project-subtitle">Advanced SQL & Power BI</p>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">UN SDG</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Performed data ingestion, cleaning, and comprehensive analysis of United Nations Sustainable Development Goals datasets. Developed interactive Power BI dashboards showcasing global progress metrics and country-level performance indicators.
+                    </p>
+                <a href="https://github.com/samodad/kdu-adv-sql-4th-sem.git" 
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                </div>
+            </div>
+
+            <!-- Project 7: UK Public Sector Data Mining -->
+            <div class="project-card" data-category="ml data">
+                <div class="project-header">
+                    <div class="project-icon">🔍</div>
+                    <h3 class="project-title">UK Public Sector Data Mining</h3>
+                    <p class="project-subtitle">Classification & Clustering</p>
+                    <div class="project-tags">
+                        <span class="tag">R Programming</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Association Rules</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Applied classification, clustering, and association rule mining techniques on UK council spending datasets using R programming. Discovered spending patterns and anomalies to support evidence-based policy recommendations.
+                    </p>
+                <a href="https://github.com/samodad/kdu-association-rule-mining-3rd-sem.git"
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+
+                </div>
+            </div>
+
+            <!-- Project 8: London Fire Brigade Analysis -->
+            <div class="project-card" data-category="ml">
+                <div class="project-header">
+                    <div class="project-icon">🚒</div>
+                    <h3 class="project-title">London Fire Brigade Analytics</h3>
+                    <p class="project-subtitle">Logistic Regression Model</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Logistic Regression</span>
+                        <span class="tag">Predictive Analytics</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Developed logistic regression models on London Fire Brigade incident records using Python to predict incident severity and response outcomes. Enhanced emergency response planning through data-driven risk assessment and pattern identification.
+                    </p>
+                     <a href="https://github.com/samodad/kdu-classification-clustering-3rd-sem.git"
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+
+                </div>
+            </div>
+
+            <!-- Project 9: UK Council Spending Dashboard -->
+            <div class="project-card" data-category="data">
+                <div class="project-header">
+                    <div class="project-icon">📈</div>
+                    <h3 class="project-title">UK Council Spending Dashboard</h3>
+                    <p class="project-subtitle">Interactive Plotly Visualization</p>
+                    <div class="project-tags">
+                        <span class="tag">R Programming</span>
+                        <span class="tag">Plotly</span>
+                        <span class="tag">Data Viz</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Built interactive Plotly dashboards in R for UK council spending analysis, enabling stakeholders to explore expenditure patterns dynamically. Facilitated transparent budget monitoring and financial accountability through intuitive visualizations.
+                    </p>
+                 <a href="https://github.com/samodad/kdu-association-rule-mining-3rd-sem.git"
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+
+                </div>
+            </div>
+
+            <!-- Project 10: Australian Transport Analysis -->
+            <div class="project-card" data-category="data">
+                <div class="project-header">
+                    <div class="project-icon">🚊</div>
+                    <h3 class="project-title">Australian National Passenger Travel</h3>
+                    <p class="project-subtitle">Transport Mode Analysis</p>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Transportation</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Analyzed Australian government passenger travel datasets by transport mode using advanced SQL and Power BI. Identified commuting trends and transportation infrastructure utilization patterns to inform policy development.
+                    </p>
+                 <a href="https://github.com/samodad/kdu-sql-2nd-sem.git"
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                </div>
+            </div>
+
+            <!-- Project 11: Canada Immigration Job Market -->
+            <div class="project-card" data-category="data">
+                <div class="project-header">
+                    <div class="project-icon">🍁</div>
+                    <h3 class="project-title">Canadian Immigration Job Analysis</h3>
+                    <p class="project-subtitle">Career Insights for Immigrants</p>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Labor Market</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Conducted comprehensive analysis of Canadian job market trends for immigrants using SQL and Power BI. Provided data-driven insights on employment opportunities, industry demand, and regional career prospects.
+                    </p>
+             <a href="https://github.com/samodad/kdu-sql-2nd-sem.git"
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                </div>
+            </div>
+
+            <!-- Project 12: UK Property Sales Analysis -->
+            <div class="project-card" data-category="data">
+                <div class="project-header">
+                    <div class="project-icon">🏠</div>
+                    <h3 class="project-title">UK Property Sales Trends</h3>
+                    <p class="project-subtitle">Comprehensive Market Analysis</p>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Real Estate</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Performed comprehensive analysis of UK property sales trends, performance metrics, and distribution patterns using SQL and Power BI. Delivered market intelligence on pricing dynamics, regional variations, and investment opportunities.
+                    </p>
+                 <a href="hhttps://github.com/samodad/kdu-sql-2nd-sem.git"
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                </div>
+            </div>
+
+            <!-- Project 13: UK Crime Analysis -->
+            <div class="project-card" data-category="data">
+                <div class="project-header">
+                    <div class="project-icon">🔒</div>
+                    <h3 class="project-title">UK Crime Data Analytics</h3>
+                    <p class="project-subtitle">Comprehensive Crime Insights</p>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Public Safety</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">
+                        Executed comprehensive Crime Analysis across UK regions using SQL and Power BI, identifying patterns in criminal activity and public safety metrics. Generated actionable insights for law enforcement resource allocation and crime prevention strategies.
+                    </p>
+                 <a href="https://github.com/samodad/kdu-power-bi-2nd-sem.git"
+   target="_blank" 
+   class="github-btn">
+   🔗 View on GitHub
+</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+           <a href="Home page.html" class="back-btn">← Back to Portfolio</a>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Samoda De Silva. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const categories = card.getAttribute('data-category');
+                    if (categories.includes(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(30px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.5s ease-out';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

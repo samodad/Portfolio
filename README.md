@@ -46,7 +46,7 @@ The repository contains the following pages:
 
 ## 🔗 Live Website
 
-https://yourusername.github.io/Portfolio/
+https://samodad.github.io/Portfolio/
 
 
 ## 📬 Contact Me
